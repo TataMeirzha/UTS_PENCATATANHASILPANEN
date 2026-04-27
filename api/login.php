@@ -46,11 +46,6 @@ form.addEventListener("submit", function(e){
     // simulasi login berhasil
     pesan.style.color = "green";
     pesan.innerText = "Login berhasil!";
-
-    // redirect (opsional)
-    setTimeout(() => {
-        window.location.href = "PencatatanPanen.php";
-    }, 1000);
 });
 
 </script>
