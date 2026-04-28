@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<img src="Cover.jpg">
+<img src="/api/BANNER.png">
 <div class="container">
     <div class="login-box">
         <h2>Login Sistem Panen</h2>
