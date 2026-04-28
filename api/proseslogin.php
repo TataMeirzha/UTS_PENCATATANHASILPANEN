@@ -1,13 +1,10 @@
 <?php
-session_start();
-include __DIR__ . '/koneksi.php'; // ✅ path relatif yang benar
+include __DIR__ . '/api/koneksi.php';
 
 if (isset($_POST['login'])) {
-
     $username = $_POST['username'];
     $pass     = $_POST['password'];
 
-    // ✅ Prepared statement (cegah SQL injection)
     $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -15,12 +12,18 @@ if (isset($_POST['login'])) {
     $stmt->close();
 
     if ($data && password_verify($pass, $data['password'])) {
-        $_SESSION['login']    = true;
-        $_SESSION['username'] = $username;
-        $_SESSION['role']     = $data['role'];
+        // --- KONFIGURASI COOKIE ---
+        // Durasi: 1 jam (3600 detik)
+        $expiry = time() + 3600; 
+        
+        // Simpan data ke cookie (disarankan simpan yang esensial saja)
+        setcookie('login', 'true', $expiry, "/");
+        setcookie('username', $username, $expiry, "/");
+        setcookie('role', $data['role'], $expiry, "/");
 
+        // Redirect berdasarkan role
         if ($data['role'] == 'admin') {
-            header("Location: /api/dashboardadmin.php"); // ✅ typo "dasboard" diperbaiki
+            header("Location: /api/dashboardadmin.php");
         } else {
             header("Location: /api/PencatatanPanen.php");
         }
