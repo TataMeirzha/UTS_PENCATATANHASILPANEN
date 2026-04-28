@@ -5,11 +5,15 @@ if (isset($_POST['login'])) {
     // Pastikan koneksi berhasil sebelum lanjut
     if (!$conn) {
         die("Koneksi database tidak tersedia.");
-    }
+    $stmt = $conn->prepare("SELECT * FROM `user` WHERE `username` = ?");
 
-    $username = $_POST['username'];
-    $pass     = $_POST['password'];
+if ($stmt === false) {
+    // Jika baris ini terpanggil, berarti ada yang salah dengan query/koneksi
+    die("Error pada Prepare: " . $conn->error);
+}
 
+// Baris 13 (Sekarang bind_param seharusnya aman)
+$stmt->bind_param("s", $username);
     $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
