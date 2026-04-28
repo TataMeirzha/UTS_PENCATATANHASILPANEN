@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include './api/koneksi.php';
 
 $username = $_POST['username'];
 $email = $_POST['email'];
@@ -15,7 +15,7 @@ $query = "INSERT INTO user (username, email, password, role) VALUES ('$username'
 $result = mysqli_query($conn, $query);
 
 if ($result){
-        header ("Location: login.php");
+        header ("Location: ./api/login.php");
     } else {
         echo "Register Gagal: " . mysqli_error($conn);
     }

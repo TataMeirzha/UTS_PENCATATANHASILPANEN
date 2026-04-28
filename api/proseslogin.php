@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "koneksi.php";
+include "./api/koneksi.php";
 
 if(isset($_POST['login'])){
 
@@ -17,9 +17,9 @@ if(isset($_POST['login'])){
 
         // redirect sesuai role
         if($data['role'] == 'admin'){
-            header("Location: dashboardadmin.php"); // pastikan file ada
+            header("Location: ./api/dasboardadmin.php"); // pastikan file ada
         } else {
-            header("Location: PencatatanPanen.php");
+            header("Location: ./api/PencatatanPanen.php");
         }
         exit;
 
