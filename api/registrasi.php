@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<img src=" /BANNER.jpg">
+<img src=" /Cover.jpg">
 <div class="container">
     <div class="login-box">
         <h2>Register Sistem Panen</h2>
