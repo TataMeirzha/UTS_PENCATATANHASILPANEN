@@ -1,22 +1,32 @@
 <?php
-include '/api/koneksi.php';
+// Tambahkan CORS header di paling atas
+header("Access-Control-Allow-Origin: https://pemweb-frontend.vercel.app");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$password_hash = password_hash($password, PASSWORD_DEFAULT);
+// Gunakan path relatif, bukan absolute path
+include __DIR__ . '/koneksi.php';
 
-if (empty($username) || empty($email) || empty($password)) {
+// Validasi DULU sebelum ambil data
+if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
     echo "Username, Email dan Password wajib diisi!";
     exit;
 }
 
-$query = "INSERT INTO user (username, email, password, role) VALUES ('$username', '$email', '$password_hash', 'user')";
-$result = mysqli_query($conn, $query);
+$username = $_POST['username'];
+$email = $_POST['email'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-if ($result){
-        header ("Location: /api/login.php");
-    } else {
-        echo "Register Gagal: " . mysqli_error($conn);
-    }
+// Gunakan prepared statement (cegah SQL injection)
+$stmt = $conn->prepare("INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, 'user')");
+$stmt->bind_param("sss", $username, $email, $password);
+
+if ($stmt->execute()) {
+    header("Location: /api/login.php");
+    exit;
+} else {
+    echo "Register Gagal: " . $conn->error;
+}
+
+$stmt->close();
 ?>
