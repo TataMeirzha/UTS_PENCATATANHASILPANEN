@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "./api/koneksi.php";
+include "/api/koneksi.php";
 
 if(!isset($_SESSION['login'])){
-    header("Location: ./api/login.php");
+    header("Location: /api/login.php");
     exit;
 }
 
@@ -189,7 +189,7 @@ while($row = mysqli_fetch_assoc($chart_query)){
         </div>
     </div>
 
-    <a href="./api/PencatatanPanen.php" class="btn-back">Kembali ke Input Data</a>
+    <a href="/api/PencatatanPanen.php" class="btn-back">Kembali ke Input Data</a>
 
 </div>
 
