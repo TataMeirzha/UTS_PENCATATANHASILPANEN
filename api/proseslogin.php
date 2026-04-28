@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/api/koneksi.php';
+include __DIR__ . 'koneksi.php';
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
