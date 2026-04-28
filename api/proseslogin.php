@@ -1,30 +1,34 @@
 <?php
 session_start();
-include "/api/koneksi.php";
+include __DIR__ . '/koneksi.php'; // ✅ path relatif yang benar
 
-if(isset($_POST['login'])){
+if (isset($_POST['login'])) {
 
     $username = $_POST['username'];
-    $pass = $_POST['password'];
+    $pass     = $_POST['password'];
 
-    // ambil data user
-    $query = $conn->query("SELECT * FROM user WHERE username='$username'");
-    $data = $query->fetch_assoc();
+    // ✅ Prepared statement (cegah SQL injection)
+    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $data = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
 
-    if($data && password_verify($pass, $data['password'])){
-        $_SESSION['login'] = true;
+    if ($data && password_verify($pass, $data['password'])) {
+        $_SESSION['login']    = true;
         $_SESSION['username'] = $username;
+        $_SESSION['role']     = $data['role'];
 
-        // redirect sesuai role
-        if($data['role'] == 'admin'){
-            header("Location: /api/dasboardadmin.php"); // pastikan file ada
+        if ($data['role'] == 'admin') {
+            header("Location: /api/dashboardadmin.php"); // ✅ typo "dasboard" diperbaiki
         } else {
             header("Location: /api/PencatatanPanen.php");
         }
         exit;
 
     } else {
-        echo "Login gagal! Username atau password salah";
+        header("Location: /api/login.php?error=1");
+        exit;
     }
 }
 ?>
