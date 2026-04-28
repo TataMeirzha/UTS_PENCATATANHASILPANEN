@@ -21,7 +21,7 @@ $stmt->bind_param("sss", $username, $email, $password);
 
 if ($stmt->execute()) {
     $stmt->close();
-    header("Location: /api/login.php");
+    header("Location: login.php");
     exit;
 } else {
     echo "Register Gagal: " . $conn->error;
