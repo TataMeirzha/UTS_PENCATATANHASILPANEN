@@ -117,6 +117,21 @@ if(isset($_GET['hapus'])){
             border: 1px solid rgba(255,255,255,0.12);
             border-bottom: none;
         }
+        .site-header .logout-btn {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background .2s ease;
+        }
+        .site-header .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
         .site-header::before,
         .site-header::after {
             content: '';

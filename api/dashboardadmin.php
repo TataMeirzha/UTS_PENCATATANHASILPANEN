@@ -370,10 +370,10 @@ $data  = $conn->query("SELECT * FROM panen ORDER BY id DESC");
     </div>
     <nav class="sidebar-nav">
         <div class="nav-label">Menu</div>
-        <a href="/api/dashboardadmin.php"     class="nav-item active"><span class="icon">🏠</span> Dashboard</a>
-        <a href="/api/PencatatanPanen.php"    class="nav-item"><span class="icon">📝</span> Pencatatan Panen</a>
-        <a href="/api/LaporanUmum.php"        class="nav-item"><span class="icon">📊</span> Dashboard Panen</a>
-        <a href="/api/LaporanPerKomoditas.php"class="nav-item"><span class="icon">🌾</span> Laporan Komoditas</a>
+        <a href="dashboardadmin.php"     class="nav-item active"><span class="icon">🏠</span> Dashboard</a>
+        <a href="PencatatanPanen.php"    class="nav-item"><span class="icon">📝</span> Pencatatan Panen</a>
+        <a href="LaporanUmum.php"        class="nav-item"><span class="icon">📊</span> Dashboard Panen</a>
+        <a href="LaporanPerKomoditas.php"class="nav-item"><span class="icon">🌾</span> Laporan Komoditas</a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-pill">
@@ -394,7 +394,7 @@ $data  = $conn->query("SELECT * FROM panen ORDER BY id DESC");
             <h2>Dashboard</h2>
             <div class="date"><?= date('l, d F Y') ?></div>
         </div>
-        <a href="/api/login.php" class="logout-btn">⬅ Logout</a>
+        <a href="logout.php" class="logout-btn">⬅ Logout</a>
     </div>
 
     <!-- Stats -->

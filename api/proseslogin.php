@@ -1,8 +1,9 @@
 <?php
+session_start();
 include_once __DIR__ . '/koneksi.php'; 
 
 if (isset($_POST['login'])) {
-    // Pastikan koneksi berhasil sebelum lanjut
+
     if (!$conn) {
         die("Koneksi database tidak tersedia.");
     }
@@ -16,17 +17,15 @@ if (isset($_POST['login'])) {
     $data = $stmt->get_result()->fetch_assoc();
     $stmt->close();
 
+    // ✅ CEK LOGIN
     if ($data && password_verify($pass, $data['password'])) {
-        // --- KONFIGURASI COOKIE ---
-        // Durasi: 1 jam (3600 detik)
-        $expiry = time() + 3600; 
-        
-        // Simpan data ke cookie (disarankan simpan yang esensial saja)
-        setcookie('login', 'true', $expiry, "/");
-        setcookie('username', $username, $expiry, "/");
-        setcookie('role', $data['role'], $expiry, "/");
 
-        // Redirect berdasarkan role
+        // ✅ SIMPAN KE SESSION (bukan cookie)
+        $_SESSION['login']    = true;
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['role']     = $data['role'];
+
+        // ✅ REDIRECT SESUAI ROLE
         if ($data['role'] == 'admin') {
             header("Location: dashboardadmin.php");
         } else {

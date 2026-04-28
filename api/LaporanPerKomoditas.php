@@ -1,5 +1,5 @@
 <?php
-include "/api/koneksi.php";
+include "koneksi.php";
 
 $data = mysqli_query($conn, "SELECT * FROM panen");
 $rows = [];
@@ -227,7 +227,7 @@ while($row = mysqli_fetch_assoc($grafik)){
         <p>Dashboard Data Panen</p>
     </div>
 
-    <a href="/api/PencatatanPanen.php" class="btn-back">Kembali ke Input Data</a>
+    <a href="PencatatanPanen.php" class="btn-back">Kembali ke Input Data</a>
 
     <div class="section-card">
         <div class="section-title">Filter Komoditas</div>
