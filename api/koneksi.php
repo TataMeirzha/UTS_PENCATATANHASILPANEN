@@ -5,13 +5,11 @@ $user = '4SAcQGX7jXvf57V.root';
 $pass = 'BeEFAGBjqkuT6bps';
 $db   = 'db_panen';
 
-// Inisialisasi mysqli
 $conn = mysqli_init();
-
-// SSL wajib untuk TiDB Serverless
 mysqli_ssl_set($conn, NULL, NULL, NULL, NULL, NULL);
 
-$real_connect = mysqli_real_connect(
+// Gunakan @ untuk menyembunyikan warning jika ingin handle error sendiri
+$real_connect = @mysqli_real_connect(
     $conn,
     $host,
     $user,
@@ -23,6 +21,6 @@ $real_connect = mysqli_real_connect(
 );
 
 if (!$real_connect) {
-    die("Koneksi ke TiDB Cloud gagal: " . mysqli_connect_error());
+    die("Koneksi gagal: " . mysqli_connect_error());
 }
 ?>

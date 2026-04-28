@@ -1,7 +1,12 @@
 <?php
-include __DIR__ . 'koneksi.php';
+include_once __DIR__ . '/koneksi.php'; 
 
 if (isset($_POST['login'])) {
+    // Pastikan koneksi berhasil sebelum lanjut
+    if (!$conn) {
+        die("Koneksi database tidak tersedia.");
+    }
+
     $username = $_POST['username'];
     $pass     = $_POST['password'];
 
