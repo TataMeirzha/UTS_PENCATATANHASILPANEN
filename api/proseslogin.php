@@ -6,6 +6,7 @@ if (isset($_POST['login'])) {
     if (!$conn) {
         die("Koneksi database tidak tersedia.");
     $stmt = $conn->prepare("SELECT * FROM `user` WHERE `username` = ?");
+    }
 
 if ($stmt === false) {
     // Jika baris ini terpanggil, berarti ada yang salah dengan query/koneksi
