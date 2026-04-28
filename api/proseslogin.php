@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $pass     = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
+    $stmt = $conn->prepare("SELECT * FROM tbl_user WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $data = $stmt->get_result()->fetch_assoc();
