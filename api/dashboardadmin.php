@@ -1,15 +1,12 @@
 <?php
-session_start();
+include "koneksi.php";
 
-if (!isset($_SESSION['username'])) {
-    header("Location:/api/login.php");
+if (!isset($_COOKIE['username'])) {
+    header("Location: /api/login.php");
     exit();
 }
 
-$conn = new mysqli("localhost", "root", "", "panen_db");
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
+$username = $_COOKIE['username'];
 
 // ── HAPUS ──
 if (isset($_GET['hapus'])) {
@@ -378,9 +375,9 @@ $data  = $conn->query("SELECT * FROM tbl_panen ORDER BY id DESC");
     </nav>
     <div class="sidebar-footer">
         <div class="user-pill">
-            <div class="avatar"><?= strtoupper(substr($_SESSION['username'], 0, 1)) ?></div>
+            <div class="avatar"><?= strtoupper(substr($username, 0, 1)) ?></div>
             <div>
-                <div class="name"><?= htmlspecialchars($_SESSION['username']) ?></div>
+                <div class="name"><?= htmlspecialchars($username) ?></div>
                 <div class="role">Administrator</div>
             </div>
         </div>

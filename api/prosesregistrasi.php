@@ -1,11 +1,6 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
-
 include "koneksi.php";
 
-// ✅ Validasi dulu sebelum proses
 if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
     echo "Username, Email dan Password wajib diisi!";
     exit;
@@ -15,13 +10,11 @@ $username = $_POST['username'];
 $email    = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-// ✅ Prepared statement (cegah SQL injection)
 $stmt = $conn->prepare("INSERT INTO tbl_user (username, email, password, role) VALUES (?, ?, ?, 'user')");
 $stmt->bind_param("sss", $username, $email, $password);
 
-session_start();
-
-if (!isset($_SESSION['username'])) {
+if ($stmt->execute()) {
+    $stmt->close();
     header("Location: /api/login.php");
     exit;
 } else {

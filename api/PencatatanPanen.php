@@ -1,11 +1,12 @@
 <?php
-session_start();
 include "koneksi.php";
 
-if(!isset($_SESSION['username'])){
-    header("Location:/api/login.php");
+if(!isset($_COOKIE['username'])){
+    header("Location: /api/login.php");
     exit;
 }
+
+$username = $_COOKIE['username'];
 
 // SIMPAN DATA
 if(isset($_POST['simpan'])){

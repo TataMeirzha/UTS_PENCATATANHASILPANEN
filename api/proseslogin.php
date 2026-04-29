@@ -10,21 +10,20 @@ if (isset($_POST['login'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $pass     = $_POST['password'];
 
-    // ✅ Pakai tbl_user (sesuai database TiDB)
     $query  = "SELECT * FROM tbl_user WHERE username = '$username'";
     $result = mysqli_query($conn, $query);
     $data   = mysqli_fetch_assoc($result);
 
     if ($data && password_verify($pass, $data['password'])) {
 
-        // ✅ Cookie
+        // Pakai cookie (session tidak stabil di Vercel)
         setcookie('username', $data['username'], time() + 3600, '/');
         setcookie('role',     $data['role'],     time() + 3600, '/');
 
         if ($data['role'] == 'admin') {
             header("Location: /api/dashboardadmin.php");
         } else {
-            header("Location: /api/dashboardadmin.php");
+            header("Location: /api/dashboarduser.php");
         }
         exit;
 
