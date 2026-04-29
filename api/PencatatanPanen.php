@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "/api/koneksi.php";
+include "koneksi.php";
 
 if(!isset($_SESSION['login'])){
-    header("Location: /api/login.php");
+    header("Location: login.php");
     exit;
 }
 
@@ -14,11 +14,11 @@ if(isset($_POST['simpan'])){
     $jumlah    = $_POST['jumlah_panen'];
     $satuan    = $_POST['satuan_panen'];
 
-    $query = "INSERT INTO panen (tanggal, komoditas, jumlah, satuan) 
+    $query = "INSERT INTO tbl_panen (tanggal, komoditas, jumlah, satuan) 
               VALUES ('$tanggal','$komoditas','$jumlah','$satuan')";
 
     if(mysqli_query($conn, $query)){
-        header("Location: /api/PencatatanPanen.php");
+        header("Location: PencatatanPanen.php");
         exit;
     } else {
         echo "Error: " . mysqli_error($conn);
@@ -28,8 +28,8 @@ if(isset($_POST['simpan'])){
 // HAPUS DATA
 if(isset($_GET['hapus'])){
     $id = $_GET['hapus'];
-    mysqli_query($conn, "DELETE FROM panen WHERE id='$id'");
-    header("Location: /api/PencatatanPanen.php");
+    mysqli_query($conn, "DELETE FROM tbl_panen WHERE id='$id'");
+    header("Location: PencatatanPanen.php");
     exit;
 }
 ?>
@@ -444,7 +444,7 @@ if(isset($_GET['hapus'])){
                 <tbody>
                 <?php
                 $no = 1;
-                $tampil = mysqli_query($conn, "SELECT * FROM panen ORDER BY id DESC");
+                $tampil = mysqli_query($conn, "SELECT * FROM tbl_panen ORDER BY id DESC");
 
                 if(mysqli_num_rows($tampil) == 0){
                     echo '<tr><td colspan="4" class="no-data">Belum ada data panen</td></tr>';
@@ -463,8 +463,8 @@ if(isset($_GET['hapus'])){
         </div>
 
         <div class="nav-buttons">
-            <a href="/api/LaporanUmum.php" class="btn-nav btn-nav-green">Dashboard Panen Terbanyak</a>
-            <a href="/api/LaporanPerKomoditas.php" class="btn-nav btn-nav-blue">Laporan Per Komoditas</a>
+            <a href="LaporanUmum.php" class="btn-nav btn-nav-green">Dashboard Panen Terbanyak</a>
+            <a href="LaporanPerKomoditas.php" class="btn-nav btn-nav-blue">Laporan Per Komoditas</a>
         </div>
     </div>
 

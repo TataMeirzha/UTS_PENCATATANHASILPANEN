@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: /api/login.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 // ── HAPUS ──
 if (isset($_GET['hapus'])) {
     $id = (int)$_GET['hapus'];
-    $conn->query("DELETE FROM panen WHERE id = $id");
-    header("Location: /api/dashboardadmin.php");
+    $conn->query("DELETE FROM tbl_panen WHERE id = $id");
+    header("Location: dashboardadmin.php");
     exit();
 }
 
@@ -23,7 +23,7 @@ if (isset($_GET['hapus'])) {
 $editData = null;
 if (isset($_GET['edit'])) {
     $id = (int)$_GET['edit'];
-    $res = $conn->query("SELECT * FROM panen WHERE id = $id");
+    $res = $conn->query("SELECT * FROM tbl_panen WHERE id = $id");
     if ($res && $res->num_rows > 0) {
         $editData = $res->fetch_assoc();
     }
@@ -38,7 +38,7 @@ if (isset($_POST['simpan_edit'])) {
     $satuan    = $conn->real_escape_string($_POST['satuan']);
     $lokasi    = $conn->real_escape_string($_POST['lokasi']);
 
-    $conn->query("UPDATE panen SET 
+    $conn->query("UPDATE tbl_panen SET 
         tanggal='$tanggal', komoditas='$komoditas', 
         jumlah='$jumlah', satuan='$satuan', lokasi='$lokasi'
         WHERE id=$id");
@@ -46,9 +46,9 @@ if (isset($_POST['simpan_edit'])) {
     exit();
 }
 
-$user  = $conn->query("SELECT * FROM user")->num_rows;
-$panen = $conn->query("SELECT * FROM panen")->num_rows;
-$data  = $conn->query("SELECT * FROM panen ORDER BY id DESC");
+$user  = $conn->query("SELECT * FROM tbl_user")->num_rows;
+$panen = $conn->query("SELECT * FROM tbl_panen")->num_rows;
+$data  = $conn->query("SELECT * FROM tbl_panen ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -371,10 +371,10 @@ $data  = $conn->query("SELECT * FROM panen ORDER BY id DESC");
     </div>
     <nav class="sidebar-nav">
         <div class="nav-label">Menu</div>
-        <a href="/api/dashboardadmin.php"     class="nav-item active"><span class="icon">🏠</span> Dashboard</a>
-        <a href="/api/PencatatanPanen.php"    class="nav-item"><span class="icon">📝</span> Pencatatan Panen</a>
-        <a href="/api/LaporanUmum.php"        class="nav-item"><span class="icon">📊</span> Dashboard Panen</a>
-        <a href="/api/LaporanPerKomoditas.php"class="nav-item"><span class="icon">🌾</span> Laporan Komoditas</a>
+        <a href="dashboardadmin.php"     class="nav-item active"><span class="icon">🏠</span> Dashboard</a>
+        <a href="PencatatanPanen.php"    class="nav-item"><span class="icon">📝</span> Pencatatan Panen</a>
+        <a href="LaporanUmum.php"        class="nav-item"><span class="icon">📊</span> Dashboard Panen</a>
+        <a href="LaporanPerKomoditas.php"class="nav-item"><span class="icon">🌾</span> Laporan Komoditas</a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-pill">
@@ -395,7 +395,7 @@ $data  = $conn->query("SELECT * FROM panen ORDER BY id DESC");
             <h2>Dashboard</h2>
             <div class="date"><?= date('l, d F Y') ?></div>
         </div>
-        <a href="/api/logout.php" class="logout-btn">⬅ Logout</a>
+        <a href="logout.php" class="logout-btn">⬅ Logout</a>
     </div>
 
     <!-- Stats -->

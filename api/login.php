@@ -20,7 +20,7 @@
         </form>
 
         <div class="footer">
-            Belum punya akun? <a href="/api/registrasi.php">Daftar sekarang</a>
+            Belum punya akun? <a href="registrasi.php">Daftar sekarang</a>
         </div>
         <p id="pesan"></p>
     </div>

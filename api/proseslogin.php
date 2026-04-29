@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include_once __DIR__ . '/koneksi.php'; 
 
 if (isset($_POST['login'])) {
@@ -17,19 +19,19 @@ if (isset($_POST['login'])) {
     // ✅ CEK LOGIN
     if ($data && password_verify($pass, $data['password'])) {
 
-        setcookie('username', $data['username'], time() + 3600, '/');
-        setcookie('role',     $data['role'],     time() + 3600, '/');
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['role']     = $data['role'];
 
         // ✅ REDIRECT SESUAI ROLE
         if ($data['role'] == 'admin') {
-            header ("Location: /api/dashboardadmin.php");
+            header ("Location: dashboardadmin.php");
         } else {
-            header("Location: /api/dashboarduser.php");
+            header("Location: dashboarduser.php");
         }
         exit;
 
     } else {
-        header("Location: /api/login.php?error=1");
+        header("Location: login.php?error=1");
         exit;
     }
 }

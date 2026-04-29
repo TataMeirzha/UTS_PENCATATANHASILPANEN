@@ -21,7 +21,7 @@
             <button type="submit">Register</button>
         </form>
         <div class="footer">
-            Sudah punya akun? <a href="/api/login.php">Masuk sekarang</a>
+            Sudah punya akun? <a href="login.php">Masuk sekarang</a>
         </div>
         <p id="pesan"></p>
     </div>
@@ -50,7 +50,7 @@ form.addEventListener("submit", function(e){
 
     // redirect (opsional)
     setTimeout(() => {
-        window.location.href = "/api/login.php";
+        window.location.href = "login.php";
     }, 1000);
 });
 
