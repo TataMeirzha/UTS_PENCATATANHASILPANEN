@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: /api/login.php");
     exit();
 }
 
@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 if (isset($_GET['hapus'])) {
     $id = (int)$_GET['hapus'];
     $conn->query("DELETE FROM tbl_panen WHERE id = $id");
-    header("Location: dashboardadmin.php");
+    header("Location: /api/dashboardadmin.php");
     exit();
 }
 
@@ -42,7 +42,7 @@ if (isset($_POST['simpan_edit'])) {
         tanggal='$tanggal', komoditas='$komoditas', 
         jumlah='$jumlah', satuan='$satuan', lokasi='$lokasi'
         WHERE id=$id");
-    header("Location: dashboardadmin.php");
+    header("Location: /api/dashboardadmin.php");
     exit();
 }
 
@@ -371,10 +371,10 @@ $data  = $conn->query("SELECT * FROM tbl_panen ORDER BY id DESC");
     </div>
     <nav class="sidebar-nav">
         <div class="nav-label">Menu</div>
-        <a href="dashboardadmin.php"     class="nav-item active"><span class="icon">🏠</span> Dashboard</a>
-        <a href="PencatatanPanen.php"    class="nav-item"><span class="icon">📝</span> Pencatatan Panen</a>
-        <a href="LaporanUmum.php"        class="nav-item"><span class="icon">📊</span> Dashboard Panen</a>
-        <a href="LaporanPerKomoditas.php"class="nav-item"><span class="icon">🌾</span> Laporan Komoditas</a>
+        <a href=" /api/dashboardadmin.php"     class="nav-item active"><span class="icon">🏠</span> Dashboard</a>
+        <a href=" /api/PencatatanPanen.php"    class="nav-item"><span class="icon">📝</span> Pencatatan Panen</a>
+        <a href=" /api/LaporanUmum.php"        class="nav-item"><span class="icon">📊</span> Dashboard Panen</a>
+        <a href=" /api/LaporanPerKomoditas.php"class="nav-item"><span class="icon">🌾</span> Laporan Komoditas</a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-pill">
@@ -395,7 +395,7 @@ $data  = $conn->query("SELECT * FROM tbl_panen ORDER BY id DESC");
             <h2>Dashboard</h2>
             <div class="date"><?= date('l, d F Y') ?></div>
         </div>
-        <a href="logout.php" class="logout-btn">⬅ Logout</a>
+        <a href=" /api/logout.php" class="logout-btn">⬅ Logout</a>
     </div>
 
     <!-- Stats -->

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once __DIR__ . '/koneksi.php'; 
+include_once __DIR__ . '/api/koneksi.php'; 
 
 if (isset($_POST['login'])) {
 
@@ -24,14 +24,14 @@ if (isset($_POST['login'])) {
 
         // ✅ REDIRECT SESUAI ROLE
         if ($data['role'] == 'admin') {
-            header ("Location: dashboardadmin.php");
+            header ("Location: /api/dashboardadmin.php");
         } else {
-            header("Location: dashboarduser.php");
+            header("Location: /api/dashboarduser.php");
         }
         exit;
 
     } else {
-        header("Location: login.php?error=1");
+        header("Location: /api/login.php?error=1");
         exit;
     }
 }
