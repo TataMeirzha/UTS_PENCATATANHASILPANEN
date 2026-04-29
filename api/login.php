@@ -36,7 +36,7 @@ form.addEventListener("submit", function(e) {
 
     // Jika field kosong, cegah submit dan tampilkan pesan
     if (username === "" || password === "") {
-        pee.prsan.style.color = "red";
+        pesan.style.color = "red";
         pesan.innerText = "Semua field harus diisi!";
         return;
     }
