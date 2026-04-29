@@ -16,7 +16,7 @@ $email    = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 // ✅ Prepared statement (cegah SQL injection)
-$stmt = $conn->prepare("INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, 'user')");
+$stmt = $conn->prepare("INSERT INTO tbl_user (username, email, password, role) VALUES (?, ?, ?, 'user')");
 $stmt->bind_param("sss", $username, $email, $password);
 
 if ($stmt->execute()) {

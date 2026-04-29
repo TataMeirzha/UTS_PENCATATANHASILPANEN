@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once __DIR__ . '/koneksi.php'; 
 
 if (isset($_POST['login'])) {
@@ -11,21 +10,19 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $pass     = $_POST['password'];
 
-     $query  = "SELECT * FROM tbl_user WHERE username = '$username'";
+    $query  = "SELECT * FROM tbl_user WHERE username = '$username'";
     $result = mysqli_query($conn, $query);
     $data   = mysqli_fetch_assoc($result);
 
     // ✅ CEK LOGIN
     if ($data && password_verify($pass, $data['password'])) {
 
-        // ✅ SIMPAN KE SESSION (bukan cookie)
-        $_SESSION['login']    = true;
-        $_SESSION['username'] = $data['username'];
-        $_SESSION['role']     = $data['role'];
+        setcookie('username', $data['username'], time() + 3600, '/');
+        setcookie('role',     $data['role'],     time() + 3600, '/');
 
         // ✅ REDIRECT SESUAI ROLE
         if ($data['role'] == 'admin') {
-           heaher ("Location: /api/dashboardadmin.php");
+            header ("Location: /api/dashboardadmin.php");
         } else {
             header("Location: /api/dashboarduser.php");
         }
