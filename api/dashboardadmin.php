@@ -435,7 +435,6 @@ $data  = $conn->query("SELECT * FROM tbl_panen ORDER BY id DESC");
                     <td><?= date('d M Y', strtotime($row['tanggal'])) ?></td>
                     <td><span class="komoditas-badge <?= $cls ?>"><?= htmlspecialchars($row['komoditas']) ?></span></td>
                     <td class="jumlah-cell"><?= htmlspecialchars($row['jumlah']).' '.htmlspecialchars($row['satuan']) ?></td>
-                    <td><span class="lokasi-tag"><?= htmlspecialchars($row['lokasi']) ?></span></td>
                     <td>
                         <div class="btn-group">
                             <!-- Tombol Edit — buka modal lewat JS -->
