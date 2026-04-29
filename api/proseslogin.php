@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 include "koneksi.php";
 
@@ -16,22 +15,24 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($conn, $query);
     $data   = mysqli_fetch_assoc($result);
 
+    session_start();
     // ✅ CEK LOGIN
     if ($data && password_verify($pass, $data['password'])) {
 
         $_SESSION['username'] = $data['username'];
         $_SESSION['role']     = $data['role'];
-
+        $_SESSION['login']    = true;
+        
         // ✅ REDIRECT SESUAI ROLE
         if ($data['role'] == 'admin') {
-            header ("Location: /api/dashboardadmin.php");
+            header ("Location:/api/dashboardadmin.php");
         } else {
-            header("Location: /api/dashboarduser.php");
+            header("Location:/api/dashboarduser.php");
         }
         exit;
 
     } else {
-        header("Location: /api/login.php?error=1");
+        header("Location:/api/login.php?error=1");
         exit;
     }
 }

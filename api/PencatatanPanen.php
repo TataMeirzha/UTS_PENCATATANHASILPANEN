@@ -2,8 +2,8 @@
 session_start();
 include "koneksi.php";
 
-if(!isset($_SESSION['login'])){
-    header("Location: /api/login.php");
+if(!isset($_SESSION['username'])){
+    header("Location:/api/login.php");
     exit;
 }
 
@@ -18,7 +18,7 @@ if(isset($_POST['simpan'])){
               VALUES ('$tanggal','$komoditas','$jumlah','$satuan')";
 
     if(mysqli_query($conn, $query)){
-        header("Location: /api/PencatatanPanen.php");
+        header("Location:/api/PencatatanPanen.php");
         exit;
     } else {
         echo "Error: " . mysqli_error($conn);
@@ -29,7 +29,7 @@ if(isset($_POST['simpan'])){
 if(isset($_GET['hapus'])){
     $id = $_GET['hapus'];
     mysqli_query($conn, "DELETE FROM tbl_panen WHERE id='$id'");
-    header("Location: /api/PencatatanPanen.php");
+    header("Location:/api/PencatatanPanen.php");
     exit;
 }
 ?>
@@ -463,8 +463,8 @@ if(isset($_GET['hapus'])){
         </div>
 
         <div class="nav-buttons">
-            <a href=" /api/LaporanUmum.php" class="btn-nav btn-nav-green">Dashboard Panen Terbanyak</a>
-            <a href=" /api/LaporanPerKomoditas.php" class="btn-nav btn-nav-blue">Laporan Per Komoditas</a>
+            <a href="/api/LaporanUmum.php" class="btn-nav btn-nav-green">Dashboard Panen Terbanyak</a>
+            <a href="/api/LaporanPerKomoditas.php" class="btn-nav btn-nav-blue">Laporan Per Komoditas</a>
         </div>
     </div>
 

@@ -19,8 +19,9 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $stmt = $conn->prepare("INSERT INTO tbl_user (username, email, password, role) VALUES (?, ?, ?, 'user')");
 $stmt->bind_param("sss", $username, $email, $password);
 
-if ($stmt->execute()) {
-    $stmt->close();
+session_start();
+
+if (!isset($_SESSION['username'])) {
     header("Location: /api/login.php");
     exit;
 } else {
