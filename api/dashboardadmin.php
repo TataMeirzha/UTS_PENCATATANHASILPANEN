@@ -33,7 +33,6 @@ if (isset($_POST['simpan_edit'])) {
     $komoditas = $conn->real_escape_string($_POST['komoditas']);
     $jumlah    = (int)$_POST['jumlah'];
     $satuan    = $conn->real_escape_string($_POST['satuan']);
-    $lokasi    = $conn->real_escape_string($_POST['lokasi']);
 
     $conn->query("UPDATE tbl_panen SET 
         tanggal='$tanggal', komoditas='$komoditas', 
