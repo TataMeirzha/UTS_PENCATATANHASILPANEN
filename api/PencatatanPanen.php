@@ -375,11 +375,12 @@ if(isset($_GET['hapus'])){
 <div class="page-wrapper">
 
     <!-- HEADER -->
+    <!-- HEADER -->
     <div class="site-header">
-        <h1>SISTEM PENCATATAN HASIL PANEN</h1>
-        <p>Kelola data panen Anda dengan mudah dan efisien</p>
-    </div>
-
+    <a href="/api/logout.php" class="logout-btn">⬅ Logout</a>
+    <h1>SISTEM PENCATATAN HASIL PANEN</h1>
+    <p>Kelola data panen Anda dengan mudah dan efisien</p>
+</div>
     <!-- BANNER -->
     <div class="banner-wrap">
         <img src="/BANNER.png" alt="Banner Panen">
