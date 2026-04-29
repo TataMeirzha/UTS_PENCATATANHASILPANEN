@@ -13,7 +13,7 @@
     <div class="login-box">
         <h2>Login Sistem Panen</h2>
         
-        <form action="/api/proseslogin.php" method="POST" id="loginForm">
+        <form action="proseslogin.php" method="POST" id="loginForm">
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit" name="login">Login</button>
@@ -36,8 +36,7 @@ form.addEventListener("submit", function(e) {
 
     // Jika field kosong, cegah submit dan tampilkan pesan
     if (username === "" || password === "") {
-        e.preventDefault(); // hanya cegah submit jika ada yang kosong
-        pesan.style.color = "red";
+        pee.prsan.style.color = "red";
         pesan.innerText = "Semua field harus diisi!";
         return;
     }

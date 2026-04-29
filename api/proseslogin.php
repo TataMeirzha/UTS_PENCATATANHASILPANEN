@@ -27,14 +27,14 @@ if (isset($_POST['login'])) {
 
         // ✅ REDIRECT SESUAI ROLE
         if ($data['role'] == 'admin') {
-            header("Location: dashboardadmin.php");
+            header("Location: /api/dashboardadmin.php");
         } else {
-            header("Location: PencatatanPanen.php");
+            header("Location: /api/PencatatanPanen.php");
         }
         exit;
 
     } else {
-        header("Location: login.php?error=1");
+        header("Location: /api/login.php?error=1");
         exit;
     }
 }
