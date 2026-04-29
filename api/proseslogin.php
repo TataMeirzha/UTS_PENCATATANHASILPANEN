@@ -25,9 +25,9 @@ if (isset($_POST['login'])) {
 
         // ✅ REDIRECT SESUAI ROLE
         if ($data['role'] == 'admin') {
-            header("Location: /api/dashboardadmin.php");
+           echo "login berhasil";
         } else {
-            header("Location: /api/PencatatanPanen.php");
+            echo "login gagal";
         }
         exit;
 
