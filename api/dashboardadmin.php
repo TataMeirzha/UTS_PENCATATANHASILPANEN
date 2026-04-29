@@ -1,6 +1,7 @@
 <?php
-// Ganti session menjadi cookie
-if (!isset($_COOKIE['username'])) {
+session_start();
+
+if (!isset($_SESSION['username'])) {
     header("Location: /api/login.php");
     exit();
 }
@@ -18,7 +19,7 @@ if (isset($_GET['hapus'])) {
     exit();
 }
 
-// ── EDIT ──
+// ── EDIT — ambil data untuk modal ──
 $editData = null;
 if (isset($_GET['edit'])) {
     $id = (int)$_GET['edit'];
@@ -48,9 +49,6 @@ if (isset($_POST['simpan_edit'])) {
 $user  = $conn->query("SELECT * FROM user")->num_rows;
 $panen = $conn->query("SELECT * FROM panen")->num_rows;
 $data  = $conn->query("SELECT * FROM panen ORDER BY id DESC");
-
-// Ambil username dari cookie
-$username = $_COOKIE['username'];
 ?>
 
 <!DOCTYPE html>

@@ -1,7 +1,13 @@
 <?php
-// Hapus semua cookie
-setcookie('username', '', time() - 3600, '/');
-setcookie('role',     '', time() - 3600, '/');
-header("Location: /api/login.php");
+session_start();
+
+// Hapus semua data session
+$_SESSION = [];
+
+// Hancurkan session
+session_destroy();
+
+// Redirect ke login
+header("Location: login.php");
 exit;
 ?>
