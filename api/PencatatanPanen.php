@@ -14,9 +14,10 @@ if(isset($_POST['simpan'])){
     $komoditas = $_POST['komoditas_panen'];
     $jumlah    = $_POST['jumlah_panen'];
     $satuan    = $_POST['satuan_panen'];
+    $id        = $_POST['Id_panen'];
 
-    $query = "INSERT INTO tbl_panen (tanggal, komoditas, jumlah, satuan) 
-              VALUES ('$tanggal','$komoditas','$jumlah','$satuan')";
+    $query = "INSERT INTO tbl_panen (id, tanggal, komoditas, jumlah, satuan) 
+              VALUES ('$id','$tanggal','$komoditas','$jumlah','$satuan')";
 
     if(mysqli_query($conn, $query)){
         header("Location:/api/PencatatanPanen.php");
