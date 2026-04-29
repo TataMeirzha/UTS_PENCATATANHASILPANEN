@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-include_once __DIR__ . '/api/koneksi.php'; 
+include_once __DIR__ . '/koneksi.php'; 
 
 if (isset($_POST['login'])) {
 
-    if (!$conn) {
-        die("Koneksi database tidak tersedia.");
+    if (!isset($conn)) {
+    die("Koneksi database gagal.");
     }
 
     $username = $_POST['username'];

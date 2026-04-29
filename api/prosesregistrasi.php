@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
-include __DIR__ . '/api/koneksi.php'; // ✅ path relatif yang benar
+include __DIR__ . '/koneksi.php'; // ✅ path relatif yang benar
 
 // ✅ Validasi dulu sebelum proses
 if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
