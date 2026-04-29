@@ -11,11 +11,9 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $pass     = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM tbl_user WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $data = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
+     $query  = "SELECT * FROM tbl_user WHERE username = '$username'";
+    $result = mysqli_query($conn, $query);
+    $data   = mysqli_fetch_assoc($result);
 
     // ✅ CEK LOGIN
     if ($data && password_verify($pass, $data['password'])) {
