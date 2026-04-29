@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
         if ($data['role'] == 'admin') {
             header("Location: /api/dashboardadmin.php");
         } else {
-            header("Location: /api/PencatatanPanen.php");
+            header("Location: /api/dashboardadmin.php");
         }
         exit;
 
