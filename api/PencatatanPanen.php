@@ -408,7 +408,7 @@ if(isset($_GET['hapus'])){
                     <select name="komoditas_panen" class="form-control" id="komoditas-select" style="appearance:none; -webkit-appearance:none; padding-right:36px; cursor:pointer;">
                         <option value="" disabled selected>Memuat data BPS...</option>
                     </select>
-                    <span style="position:absolute; right:15px; top:50%; transform:translateY(-50%); pointer-events:none; color:#2e7d32; font-size:13px;">▼</span>
+                    <span style="position:absolute; right:15px; top:50%; transform:translateY(-0%); pointer-events:none; color:#2e7d32; font-size:13px;">▼</span>
                 </div>
 
                 <div>
