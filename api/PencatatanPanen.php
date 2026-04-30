@@ -403,11 +403,12 @@ if(isset($_GET['hapus'])){
                     <input type="date" name="tanggal_panen" class="form-control" required>
                 </div>
 
-                <div>
-                    <label class="form-label">Komoditas <span id="bps-status" style="font-size:0.72rem;font-weight:400;color:#888;"></span></label>
-                    <select name="komoditas_panen" class="form-control" id="komoditas-select">
+                <div style="position:relative;">
+                    <label class="form-label">Komoditas</label>
+                    <select name="komoditas_panen" class="form-control" id="komoditas-select" style="appearance:none; -webkit-appearance:none; padding-right:36px; cursor:pointer;">
                         <option value="" disabled selected>Memuat data BPS...</option>
                     </select>
+                    <span style="position:absolute; right:13px; top:50%; transform:translateY(-50%); pointer-events:none; color:#2e7d32; font-size:13px;">▼</span>
                 </div>
 
                 <div>
