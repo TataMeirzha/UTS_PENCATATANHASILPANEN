@@ -404,12 +404,9 @@ if(isset($_GET['hapus'])){
                 </div>
 
                 <div>
-                    <label class="form-label">Komoditas</label>
-                    <select name="komoditas_panen" class="form-control">
-                        <option>Padi</option>
-                        <option>Jagung</option>
-                        <option>Cabai</option>
-                        <option>Kedelai</option>
+                    <label class="form-label">Komoditas <span id="bps-status" style="font-size:0.72rem;font-weight:400;color:#888;"></span></label>
+                    <select name="komoditas_panen" class="form-control" id="komoditas-select">
+                        <option value="" disabled selected>Memuat data BPS...</option>
                     </select>
                 </div>
 
@@ -477,6 +474,54 @@ if(isset($_GET['hapus'])){
     </div>
 
 </div>
+
+<script>
+const select = document.getElementById('komoditas-select');
+const status = document.getElementById('bps-status');
+
+fetch('/api/BPS.php')
+    .then(res => res.json())
+    .then(data => {
+        select.innerHTML = '';
+
+        if (data.komoditas && data.komoditas.length > 0) {
+            data.komoditas.forEach(nama => {
+                const opt = document.createElement('option');
+                opt.value = nama;
+                opt.textContent = nama;
+                select.appendChild(opt);
+            });
+
+            if (data.status === 'fallback') {
+                status.textContent = '(data default)';
+                status.style.color = '#e65100';
+            } else {
+                status.textContent = '(dari BPS)';
+                status.style.color = '#2e7d32';
+            }
+        } else {
+            ['Padi','Jagung','Kedelai','Cabai','Bawang Merah','Ubi Kayu'].forEach(nama => {
+                const opt = document.createElement('option');
+                opt.value = nama;
+                opt.textContent = nama;
+                select.appendChild(opt);
+            });
+            status.textContent = '(data default)';
+            status.style.color = '#e65100';
+        }
+    })
+    .catch(() => {
+        select.innerHTML = '';
+        ['Padi','Jagung','Kedelai','Cabai','Bawang Merah','Ubi Kayu'].forEach(nama => {
+            const opt = document.createElement('option');
+            opt.value = nama;
+            opt.textContent = nama;
+            select.appendChild(opt);
+        });
+        status.textContent = '(offline)';
+        status.style.color = '#c62828';
+    });
+</script>
 
 </body>
 </html>
